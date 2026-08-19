@@ -82,10 +82,13 @@ class ModelTrainer:
                 "K-Neighbors Regressor"  : KNeighborsRegressor(),
                 "Decision Tree"          : DecisionTreeRegressor(),
                 "Random Forest Regressor": RandomForestRegressor(),
-                "CatBoosting Regressor"  : CatBoostRegressor(verbose=False),
+                #"CatBoosting Regressor"  : CatBoostRegressor(verbose=False),
                 "AdaBoost Regressor"     : AdaBoostRegressor(),
-                "XGBRegressor"       : XGBRegressor()
+                #"XGBRegressor"       : XGBRegressor()
             }
+
+            # Commented Cat boost and XGBOOST b/c Docker COntainer size was vey large
+            # if not making container then you can keep it 
 
             # ---------------- Hyperparameters for Each Model ----------------
             # IMP: keys SAME honi chahiye jaise models dict mein — warna GridSearchCV match nahi karega
@@ -108,19 +111,20 @@ class ModelTrainer:
                     "subsample"    : [0.6, 0.7, 0.75, 0.8, 0.85, 0.9],
                     "n_estimators" : [8, 16, 32, 64, 128, 256]
                 },
-                "CatBoosting Regressor"  : {
-                    "depth"        : [6, 8, 10],
-                    "learning_rate": [0.01, 0.05, 0.1],
-                    "iterations"   : [30, 50, 100]
-                },
+
+                # "CatBoosting Regressor"  : {
+                #     "depth"        : [6, 8, 10],
+                #     "learning_rate": [0.01, 0.05, 0.1],
+                #     "iterations"   : [30, 50, 100]
+                # },
                 "AdaBoost Regressor"     : {
                     "learning_rate": [.1, .01, 0.5, .001],
                     "n_estimators" : [8, 16, 32, 64, 128, 256]
                 },
-                "XGBRegressor"           : {
-                    "learning_rate": [.1, .01, .05, .001],
-                    "n_estimators" : [8, 16, 32, 64, 128, 256]
-                }
+                # "XGBRegressor"           : {
+                #     "learning_rate": [.1, .01, .05, .001],
+                #     "n_estimators" : [8, 16, 32, 64, 128, 256]
+                # }
             }
 
 
